@@ -11,8 +11,7 @@ router.post("/uploadBase64", (req: Request, res: Response, next: NextFunction) =
         const folder = __dirname + '\\image/'
         const path = folder + Date.now() + '.png'
         const imgData = req.body.base64image;
-        const base64Data = imgData.replace(/^data:([A-Za-z-+/]+);base64,/, '');
-        fs.writeFileSync(path, base64Data, {encoding: 'base64'});
+        fs.writeFileSync(path, imgData);
         return res.send(path);
     } catch (e) {
         next(e);
