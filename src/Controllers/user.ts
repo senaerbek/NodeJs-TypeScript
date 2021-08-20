@@ -3,7 +3,7 @@ import User from "../models/user";
 import {sendJwt} from "../helper/auth"
 import {IUser} from "../interface/IUser";
 import bcrypt from 'bcrypt'
-import {body,validationResult} from "express-validator";
+import {body, validationResult} from "express-validator";
 
 const router = express.Router();
 
@@ -56,7 +56,6 @@ async function register(req: Request, res: Response) {
 
 async function login(req: Request, res: Response) {
     const {email, password} = req.body;
-    //todo <IUser> araştır
     const user: IUser = <IUser>await User.findOne({email}).select("+password").exec();
     if (!user) {
         res.status(404).json({
@@ -120,6 +119,5 @@ async function deleteUser(req: Request, res: Response) {
         })
     }
 }
-
 
 module.exports = router
