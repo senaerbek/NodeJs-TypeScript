@@ -1,13 +1,11 @@
 import {NextFunction, Response} from "express";
-import {IUser} from "../interface/IUser";
-
-const jwt = require('jsonwebtoken');
+import jwt, {JwtPayload} from 'jsonwebtoken';
 
 const getToken = (req: { headers: { authorization: string; }; user: { id: any; name: string; }; }, res: Response, next: NextFunction) => {
     if (req.headers.authorization) {
         const accessToken = req.headers.authorization.split(" ")[1];
         jwt.verify(accessToken, "JWT_SECRET_KEY_JWT_SECRET_KEY", (
-            err: Error, decoded: IUser
+            err, decoded:JwtPayload|undefined
         ) => {
             if (err) {
                 if (err.name === "TokenExpiredError") {
@@ -18,8 +16,8 @@ const getToken = (req: { headers: { authorization: string; }; user: { id: any; n
                 }
             }
             req.user = {
-                id: decoded.id,
-                name: decoded.name,
+                id: decoded?.id,
+                name: decoded?.name,
             }
         });
     } else {

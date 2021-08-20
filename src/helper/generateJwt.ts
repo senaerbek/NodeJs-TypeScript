@@ -1,6 +1,5 @@
 import {IUser} from "../interface/IUser";
-
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken'
 
 export function generateJwtFromUser(user: IUser) {
     const payload = {

@@ -1,10 +1,8 @@
-import express, {NextFunction, Request, Response} from "express";
-
-const fetch = require("node-fetch");
+import express, {NextFunction, Request, Response} from 'express';
+import fetch from 'node-fetch';
 const router = express.Router();
-const fs = require('fs');
-const multer = require('multer')
-
+import fs from 'fs';
+import multer from 'multer'
 
 router.post("/uploadBase64", (req: Request, res: Response, next: NextFunction) => {
     try {

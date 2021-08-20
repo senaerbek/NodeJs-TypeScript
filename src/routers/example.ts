@@ -1,10 +1,7 @@
 import express from "express";
 import controller from "../Controllers/example";
 
-const {getToken} = require('../middlewares/authMiddleware');
-
 const router = express.Router();
-
-router.get('/example', getToken, controller.example)
+router.get('/example',controller.example)
 
 export = router;
